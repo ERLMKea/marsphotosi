@@ -4,6 +4,8 @@ const pbGetPhotos = document.getElementById("pbGetPhotos")
 
 const tblPhotos = document.getElementById("tblMars")
 const pbCreatTable = document.getElementById("pbCreateTable")
+const pbSetPage = document.getElementById("pbSetPage")
+const inpPage = document.getElementById("inpPage")
 
 function createTableHardCoded() {
     let rowCount = tblPhotos.rows.length
@@ -68,7 +70,7 @@ pbCreatTable.addEventListener('click', createTable)
 
 function fetchPhotos() {
     out("inside fetchphotos")
-    return  fetch(marsUrl).then(response => response.json()); //returns the result of json()
+    return  fetch(getMarsUrl()).then(response => response.json()); //returns the result of json()
 }
 
 function printPhoto(photo) {
@@ -96,4 +98,26 @@ pbGetPhotos.addEventListener('click', doFetchPhoto)
 pbCreatTable.addEventListener('click', doFetchPhoto)
 
 
+const marsUrlStart = "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?sol=100&"
 
+const marsUrlApiKey = "&api_key=cXrM4POFLGgBFlOOAbiEk3K0q2NfzynY0Ckydqap"
+
+let marsPageUrl;
+
+function changePage(btn) {
+    out("change page")
+    const page = inpPage.value
+    const marsPageUrl = marsUrlStart + "page=" + page + marsUrlApiKey;
+    tblPhotos.innerHTML = ""
+    doFetchPhoto(btn)
+}
+
+pbSetPage.addEventListener('click', changePage)
+
+function getMarsUrl() {
+    if (marsPageUrl) {
+        return marsPageUrl
+    } else {
+        return marsUrl
+    }
+}
