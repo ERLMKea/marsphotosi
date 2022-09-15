@@ -1,6 +1,7 @@
 out("im in create table")
 
 const tblPhotos = document.getElementById("tblMars")
+const pbCreatTable = document.getElementById("pbCreateTable")
 
 function createTable() {
     let rowCount = tblPhotos.rows.length
@@ -15,5 +16,5 @@ function createTable() {
 
 }
 
-tblPhotos.addEventListener('click', createTable)
+pbCreatTable.addEventListener('click', createTable)
 
