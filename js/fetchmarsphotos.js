@@ -10,14 +10,18 @@ function fetchPhotos() {
 
 function printPhoto(photo) {
     out(photo)
-    //out("id=" + student.id)
+    out("id=" + photo.id)
+    out("rover=" + photo.rover)
+    out("camera=" + photo.camera)
+
 }
 
 async function doFetchPhoto(btn) {
     out("fetch photos")
     let photos = await fetchPhotos();
     out(photos); //students is an array
-    photos.forEach(printPhoto())
+    let photoArr = photos.photos;
+    photoArr.forEach(printPhoto)
 }
 
 pbGetPhotos.addEventListener('click', doFetchPhoto)
