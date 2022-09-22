@@ -52,9 +52,24 @@ function createTable(photo) {
     cell = row.insertCell(cellCount++)
     let pbUpdate = document.createElement("button")
     pbUpdate.textContent = "Update photo"
+    pbUpdate.addEventListener('click', function () {
+        photo.description = inpDescr.value;
+        updatePhoto(photo)
+    })
     cell.appendChild(pbUpdate)
 
+}
 
+async function updatePhoto(photo) {
+    const response = await restUpdatePhoto(photo)
+    out(response)
+}
+
+async function restUpdatePhoto(photo) {
+    const url = "http://localhost:8080/photo/" + photo.id;
+    const jsonString = JSON.stringify(photo)
+    out(jsonString)
+    return jsonString
 }
 
 
