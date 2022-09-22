@@ -9,39 +9,51 @@ const pbCreatTable = document.getElementById("pbCreateTable")
 const pbSetPage = document.getElementById("pbSetPage")
 const inpPage = document.getElementById("inpPage")
 
-
 function createTable(photo) {
-    if (!photo.id) return;
+    if (!photo.id) return; //check photo.id is not: undefined or null or "" or 0
 
+    let cellCount = 0;
     let rowCount = tblPhotos.rows.length
     out("rowcount=" + rowCount)
     let row = tblPhotos.insertRow(rowCount)
 
-    let cell1 = row.insertCell(0)
-    cell1.innerHTML= photo.id
+    let cell = row.insertCell(cellCount++)
+    cell.innerHTML= photo.id
 
-    let cell2 = row.insertCell(1)
-    cell2.innerHTML= photo.sol
+    cell = row.insertCell(cellCount++)
+    cell.innerHTML= photo.sol
 
-    let cell3 = row.insertCell(2)
-    cell3.innerHTML= photo.rover.name
+    cell = row.insertCell(cellCount++)
+    let inpDescr = document.createElement("input")
+    inpDescr.type = "text"
+    inpDescr.setAttribute("value", photo.description)
+    cell.appendChild(inpDescr)
 
-    let cell4 = row.insertCell(3)
-    cell4.innerHTML= photo.camera.name
+    cell = row.insertCell(cellCount++)
+    cell.innerHTML= photo.rover.name
 
-    let cell5 = row.insertCell(4)
+    cell = row.insertCell(cellCount++)
+    cell.innerHTML= photo.camera.name
+
+    cell = row.insertCell(cellCount++)
     let atag = document.createElement("a")
     atag.setAttribute("href", photo.img_src)
     atag.innerText = photo.id
-    cell5.appendChild(atag)
+    cell.appendChild(atag)
 
-    let cell6 = row.insertCell(5)
+    cell = row.insertCell(cellCount++)
     let img = document.createElement("img")
     img.setAttribute("src", photo.img_src)
     img.setAttribute("alt", photo.id)
     img.setAttribute("width", 100)
     img.setAttribute("height", 100)
-    cell6.appendChild(img)
+    cell.appendChild(img)
+
+    cell = row.insertCell(cellCount++)
+    let pbUpdate = document.createElement("button")
+    pbUpdate.textContent = "Update photo"
+    cell.appendChild(pbUpdate)
+
 
 }
 
