@@ -1,6 +1,7 @@
 out("im in create table")
 const marsUrl = "https://api.nasa.gov/mars-photos/api/v1/rovers/perseverance/photos?sol=100&page=2&api_key=cXrM4POFLGgBFlOOAbiEk3K0q2NfzynY0Ckydqap"
 const urlLocalPhotos = "http://localhost:8080/photos";
+const urlPhotosFromNavCam = "http://localhost:8080/photosfromnavcamera"
 const pbGetPhotos = document.getElementById("pbGetPhotos")
 
 const tblPhotos = document.getElementById("tblMars")
@@ -63,7 +64,7 @@ function printPhoto(photo) {
 async function doFetchPhoto(btn) {
     //out(btn.srcElement.id) //the id of the button that was pressed
     out("fetch photos")
-    let photos = await fetchPhotos(urlLocalPhotos);
+    let photos = await fetchPhotos(urlPhotosFromNavCam);
     out(photos); //students is an array
     let photoArr = photos;
     if (btn.srcElement.id == "pbGetPhotos") {
