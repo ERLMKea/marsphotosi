@@ -61,15 +61,34 @@ function createTable(photo) {
 }
 
 async function updatePhoto(photo) {
+    out("update photo called")
     const response = await restUpdatePhoto(photo)
     out(response)
 }
 
 async function restUpdatePhoto(photo) {
     const url = "http://localhost:8080/photo/" + photo.id;
-    const jsonString = JSON.stringify(photo)
-    out(jsonString)
-    return jsonString
+
+    const fetchOptions = {
+        method: "PUT",
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: ""
+    }
+
+    const jsonString = JSON.stringify(photo);
+    fetchOptions.body = jsonString;
+
+    //calls backend and wait for return
+    const response = await fetch(url, fetchOptions);
+
+    out(response);
+    if (!response.ok) {
+        out("Det gik ikke godt med update");
+    };
+
+    return response;
 }
 
 
