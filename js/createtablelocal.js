@@ -35,11 +35,17 @@ function createTable(photo) {
     cell = row.insertCell(cellCount++)
     //cell.innerHTML= photo.camera.name
     const ddCamera = document.createElement("select");
+    let ix = 0;
     cameraMap.forEach(camera => {
         const el = document.createElement("option")
         el.textContent = camera.name
         el.value = camera.id
         ddCamera.appendChild(el)
+        //now set correct selectedIndex
+        if (camera.id == photo.camera.id) {
+            ddCamera.selectedIndex = ix
+        }
+
         ddCamera.addEventListener("change", (event) => {
             const selind = ddCamera.selectedIndex;
             out(selind)
@@ -47,6 +53,7 @@ function createTable(photo) {
             out(opt)
             photo.camera.id = opt.value
         })
+        ix++;
 
     })
     cell.appendChild(ddCamera)
