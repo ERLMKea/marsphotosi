@@ -1,0 +1,57 @@
+h1 {
+    color: rgba(175, 71, 71, 0.19);
+    background-color: yellow;
+    font-family: sans-serif;
+    text-transform: lowercase;
+    font-size: 20px;
+}
+
+footer p {
+    line-height: 1;
+}
+
+h2 h3 {
+    color: red;
+}
+
+.copyright {
+    color: blue;
+}
+
+tr:first-child {
+    color: orange;
+    background-color: aliceblue;
+}
+
+tr:nth-child(2) {
+    color: cadetblue;
+}
+
+tr:nth-child(odd) {
+    color: blue;
+    background-color: cornsilk;
+    font-size: 25px;
+}
+
+tr:nth-child(even) {
+    color: black;
+    background-color: chocolate;
+}
+
+a:link {
+    color: #1098ad;
+}
+
+a:visited {
+    color: yellow;
+}
+a:hover {
+    color: orangered;
+    font-weight: bold;
+    text-decoration: underline dotted darkorange;
+}
+
+a:active {
+    color: black;
+}
+
